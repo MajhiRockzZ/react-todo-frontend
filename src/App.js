@@ -1,15 +1,34 @@
+import { useState, Fragment } from "react";
 import "./App.css";
 
 function App() {
-  fetch("http://127.0.0.1:8000/apis/v1/")
-    .then((response) => {
-      return response.json();
-    })
-    .then((responseData) => {
-      console.log(responseData);
-    });
+  const [todos, setTodos] = useState([]);
 
-  return <h1>React Frontend</h1>;
+  const fetchTodosHandler = () => {
+    fetch("http://127.0.0.1:8000/apis/v1/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseData) => {
+        setTodos(responseData);
+      });
+  };
+
+  return (
+    <Fragment>
+      <button onClick={fetchTodosHandler}>Fetch Todos</button>
+      <ul>
+        {todos.map((todo) => {
+          return (
+            <li key={todo.id}>
+              <h1>{todo.title}</h1>
+              <p>{todo.description}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </Fragment>
+  );
 }
 
 export default App;
