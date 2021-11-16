@@ -1,7 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  fetch("http://127.0.0.1:8000/apis/v1/")
+    .then((response) => {
+      return response.json();
+    })
+    .then((responseData) => {
+      console.log(responseData);
+    });
+
   return (
     <div className="App">
       <header className="App-header">
