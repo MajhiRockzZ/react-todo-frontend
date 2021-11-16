@@ -1,6 +1,7 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import "./App.css";
 import Button from "./components/Button";
+import Layout from "./components/Layout";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -16,7 +17,7 @@ function App() {
   };
 
   return (
-    <Fragment>
+    <Layout>
       <Button onClick={fetchTodosHandler}>Fetch Todos</Button>
       <ul>
         {todos.map((todo) => {
@@ -28,7 +29,7 @@ function App() {
           );
         })}
       </ul>
-    </Fragment>
+    </Layout>
   );
 }
 
